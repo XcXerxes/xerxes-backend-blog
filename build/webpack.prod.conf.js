@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 var env = config.build.env
 
@@ -35,6 +36,11 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       sourceMap: true
     }),
+
+    // lodash 按需打包
+    LodashModuleReplacementPlugin(),
+    // moment 打包体积过大
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')

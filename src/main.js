@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'animate.css'
+
+// element-ui config
+import 'element-ui/lib/theme-default/index.css'
+
+import './element-ui-config'
 
 Vue.config.productionTip = false
 
