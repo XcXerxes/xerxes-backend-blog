@@ -1,8 +1,8 @@
 import config from '../config'
-import {getCookie} from '../utils'
+// import { getCookie } from '../utils'
 
 const checkStatus = (response) => {
-  if (response.checkStatus >= 200 && response.status < 300) {
+  if (response.status >= 200 && response.status < 300) {
     return response
   } else {
     const error = new Error(response.statusText)
@@ -17,7 +17,7 @@ const _parenResponse = (response) => {
 
 // 解析参数
 
-const parseParams = (method, params) => {
+/* const _parseParams = (method, params) => {
   const headers = {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
@@ -33,8 +33,25 @@ const parseParams = (method, params) => {
     method,
     body: JSON.stringify(params)
   }
-}
+} */
 
+/**
+ * @method login
+ */
 export default {
-
+  login (params) {
+    console.log(`${config.api}/backend/admin/login`)
+    return fetch(`${config.api}/backend/admin/login`, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(params)
+    })
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  }
 }

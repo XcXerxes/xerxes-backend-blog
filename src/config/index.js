@@ -1,3 +1,5 @@
 export default {
-  url: 'http://localhost:8888'
+  api: '/api',
+  uploadUrl: '/api/bankend/upload',
+  imgUrl: 'http://localhost:3000/images/'
 }

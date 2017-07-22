@@ -11,11 +11,30 @@
 </template>
 <script>
   import loginForm from '@/components/Login/login-form'
+  import md5 from 'blueimp-md5'
+  import api from '@/api'
 
   export default {
     methods: {
       loginSubmit (loginForm) {
         console.log(loginForm)
+        api.login(Object.assign(loginForm, {
+          password: md5(loginForm.password)
+        })).then(data => {
+          console.log(data)
+          if (data.code === 200) {
+            this.$message({
+              type: 'success',
+              message: data.message
+            })
+          } else if (data.code === -500) {
+
+          } else {
+            this.$message.error(data.message)
+          }
+        }).catch(err => {
+          this.$message.error(err)
+        })
       }
     },
     components: {
