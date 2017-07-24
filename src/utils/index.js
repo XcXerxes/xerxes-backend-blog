@@ -33,4 +33,21 @@ const clearCookie = () => {
   }
 }
 
-export {getCookie, setCookie, deleteCookie, clearCookie}
+// 解析排序参数
+const formatSort = (params) => {
+  let {limit, page, sort} = params
+  sort = sort ? `&sort=${sort}-desc` : ''
+  return `?limit=${limit}&page=${page}${sort}`
+}
+
+// 返回首页
+const backToIndex = (self, message) => {
+  clearCookie()
+  self.$message({
+    message,
+    type: 'warning'
+  })
+  self.$router.replace('/')
+}
+
+export {getCookie, setCookie, deleteCookie, clearCookie, formatSort, backToIndex}

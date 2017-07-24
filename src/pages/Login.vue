@@ -11,6 +11,7 @@
 </template>
 <script>
   import loginForm from '@/components/Login/login-form'
+  import {setCookie} from '@/utils'
   import md5 from 'blueimp-md5'
   import api from '@/api'
 
@@ -27,6 +28,8 @@
               type: 'success',
               message: data.message
             })
+            this.$router.push('/user')
+            setCookie('xc_token', data.data)
           } else if (data.code === -500) {
 
           } else {

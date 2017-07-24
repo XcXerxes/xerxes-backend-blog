@@ -8,6 +8,8 @@ import {
   MenuItemGroup,
   Input,
   InputNumber,
+  Select,
+  Option,
   Button,
   Table,
   TableColumn,
@@ -33,6 +35,8 @@ Vue.use(MenuItemGroup)
 Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(Button)
+Vue.use(Select)
+Vue.use(Option)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Breadcrumb)

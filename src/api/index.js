@@ -1,5 +1,5 @@
 import config from '../config'
-// import { getCookie } from '../utils'
+import { getCookie, formatSort } from '../utils'
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -17,23 +17,24 @@ const _parenResponse = (response) => {
 
 // 解析参数
 
-/* const _parseParams = (method, params) => {
+const _parseParams = (method, params) => {
   const headers = {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
     'xc_token': getCookie('xc_token')
   }
-  if (!method) {
+  if (method === 'POST') {
     return {
-      headers
+      headers,
+      method,
+      body: JSON.stringify(params)
     }
   }
   return {
     headers,
-    method,
-    body: JSON.stringify(params)
+    method: method || 'GET'
   }
-} */
+}
 
 /**
  * @method login
@@ -49,6 +50,51 @@ export default {
       },
       body: JSON.stringify(params)
     })
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  getCateList (params) {
+    params = formatSort(params)
+    console.log(params)
+    return fetch(`${config.api}/backend/cate/list${params}`, _parseParams())
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  addCate (params) {
+    return fetch(`${config.api}/backend/cate`, _parseParams('POST', params))
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  updateCate (params) {
+    return fetch(`${config.api}/backend/cate/update`, _parseParams('POST', params))
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .then(err => err)
+  },
+  deleteCateById (id) {
+    return fetch(`${config.api}/backend/cate/${id}`, _parseParams('DELETE'))
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  getAllCates () {
+    return fetch(`${config.api}/bankend/cate/all`, _parseParams())
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  getArticleList (params) {
+    params = formatSort(params)
+    return fetch(`${config.api}/bankend/article/list`, _parseParams('POST', params))
       .then(checkStatus)
       .then(_parenResponse)
       .then(data => data)
