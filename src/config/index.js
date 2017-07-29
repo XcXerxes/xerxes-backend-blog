@@ -1,5 +1,5 @@
 export default {
   api: '/api',
-  uploadUrl: '/api/bankend/upload',
-  imgUrl: 'http://localhost:3000/images/'
+  uploadUrl: '/api/backend/upload',
+  imgUrl: 'http://localhost:8888/images/'
 }

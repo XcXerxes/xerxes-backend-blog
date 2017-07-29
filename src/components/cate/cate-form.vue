@@ -47,7 +47,7 @@ export default {
       })
     },
     cancel () {
-      this.$router.replace('/article')
+      this.$router.replace('/cate')
     }
   },
   created () {

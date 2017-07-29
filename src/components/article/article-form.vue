@@ -24,7 +24,19 @@
     </el-form-item>
     <el-form-item prop="thumb" label="文章缩略图：">
       <el-col :span="8">
-        <el-input placeholder="请输入描述" type="textarea" v-model="articleForm.thumb"></el-input>
+        <el-upload
+          class="avatar-uploader"
+          :action="thumbAction"
+          :show-file-list="false"
+          :on-success="handleSuccess"
+          :before-upload="beforeUpload"
+          name="bankend"
+          :headers="headers"
+          accept="image/png,image/gif,image/jpeg,image/jpg"
+        >
+          <img v-if="articleForm.thumb" :src="articleForm.thumb" class="avatar-img" />
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
       </el-col>
     </el-form-item>
     <el-form-item prop="html" label="文章内容：">
@@ -42,10 +54,16 @@
   </el-form>
 </template>
 <script>
+import config from '@/config'
+import {getCookie} from '@/utils'
 export default {
   props: ['cateList'],
   data () {
     return {
+      thumbAction: config.uploadUrl,
+      headers: {
+        xc_token: getCookie('xc_token')
+      },
       articleForm: {
         title: '',
         caption: '',
@@ -82,6 +100,20 @@ export default {
           console.log('success')
         }
       })
+    },
+    // before upload
+    beforeUpload (file) {
+      debugger
+      if (file.size > 128000) {
+        this.$message.error('上传图片大小不能超过128KB')
+        return false
+      }
+    },
+    //  upload success
+    handleSuccess (res, file) {
+      debugger
+      // console.log(arguments)
+      this.articleForm.thumb = `${config.imgUrl}${res.files.filename}`
     }
   }
 }
