@@ -86,7 +86,7 @@ export default {
       .catch(err => err)
   },
   getAllCates () {
-    return fetch(`${config.api}/bankend/cate/all`, _parseParams())
+    return fetch(`${config.api}/backend/cate/all`, _parseParams())
       .then(checkStatus)
       .then(_parenResponse)
       .then(data => data)
@@ -94,7 +94,35 @@ export default {
   },
   getArticleList (params) {
     params = formatSort(params)
-    return fetch(`${config.api}/bankend/article/list`, _parseParams('POST', params))
+    return fetch(`${config.api}/backend/article/list${params}`, _parseParams())
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  getArticleItem (id) {
+    return fetch(`${config.api}/backend/article/${id}`, _parseParams())
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  addArticle (params) {
+    return fetch(`${config.api}/backend/article`, _parseParams('POST', params))
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  updateArticle (params) {
+    return fetch(`${config.api}/backend/article/update`, _parseParams('POST', params))
+      .then(checkStatus)
+      .then(_parenResponse)
+      .then(data => data)
+      .catch(err => err)
+  },
+  deleteArticleById (id) {
+    return fetch(`${config.api}/backend/article/${id}`, _parseParams('DELETE'))
       .then(checkStatus)
       .then(_parenResponse)
       .then(data => data)

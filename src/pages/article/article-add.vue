@@ -2,7 +2,7 @@
   <section class="home-section animated bounceInRight">
     <xc-bread  :breadList="breadList"></xc-bread>
     <div class="home-section__warrpaer">
-      <article-form v-on:article-add="addArticle" :cateList="cateList"></article-form>
+      <article-form v-on:article-form="addArticle" :cateList="cateList" :article-form="articleForm"></article-form>
     </div>
   </section>
 </template>
@@ -19,12 +19,19 @@ export default {
         {path: '/article/add', title: '发布文章'}
       ],
       page: 'add',
-      cateList: []
+      cateList: [],
+      articleForm: {
+        title: '',
+        caption: '',
+        thumb: '',
+        categoryId: '',
+        html: ''
+      }
     }
   },
   methods: {
     addArticle (form) {
-      api.addCate(form).then(data => {
+      api.addArticle(form).then(data => {
         if (data.code === 200) {
           this.$message({
             type: 'success',

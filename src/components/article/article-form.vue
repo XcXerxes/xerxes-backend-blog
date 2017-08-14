@@ -34,14 +34,15 @@
           :headers="headers"
           accept="image/png,image/gif,image/jpeg,image/jpg"
         >
-          <img v-if="articleForm.thumb" :src="articleForm.thumb" class="avatar-img" />
+          <img v-if="articleForm.thumb" :src="fromatThumb" class="avatar-img" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-col>
     </el-form-item>
     <el-form-item prop="html" label="文章内容：">
-      <el-col :span="8">
-      </el-col>
+      <!-- <el-col :span="8">
+      </el-col> -->
+      <mavon-editor v-model="articleForm.html"  :style="{height: '500px'}"/>
     </el-form-item>
     <el-form-item :style="{marginTop: '40px'}">
         <el-col :span="4" :offset="1">
@@ -57,20 +58,20 @@
 import config from '@/config'
 import {getCookie} from '@/utils'
 export default {
-  props: ['cateList'],
+  props: ['cateList', 'articleInfo', 'articleForm'],
   data () {
     return {
       thumbAction: config.uploadUrl,
       headers: {
         xc_token: getCookie('xc_token')
       },
-      articleForm: {
+     /*  articleForm: {
         title: '',
         caption: '',
         thumb: '',
         categoryId: '',
         html: ''
-      },
+      }, */
       articleRules: {
         title: [
           {required: true, message: '请输入标题', trigger: 'blur'}
@@ -90,13 +91,20 @@ export default {
       }
     }
   },
+  computed: {
+    fromatThumb () {
+      return `${config.imgUrl}${this.articleForm.thumb}`
+    }
+  },
   methods: {
     cancel () {
-
+      debugger
     },
     handleSubmit (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+          console.log(this.articleForm)
+          this.$emit('article-form', this.articleForm)
           console.log('success')
         }
       })
@@ -111,13 +119,25 @@ export default {
     },
     //  upload success
     handleSuccess (res, file) {
-      debugger
       // console.log(arguments)
-      this.articleForm.thumb = `${config.imgUrl}${res.files.filename}`
+      this.articleForm.thumb = res.files.filename
     }
+  },
+  created () {
+    /* if (this.articleInfo.id) {
+      debugger
+      this.articleForm = Object.assign({}, this.articleInfo, {
+        thumb: `${config.imgUrl}${this.articleInfo.thumb}`
+      })
+    } */
   }
 }
 </script>
+<style>
+  .article-form__markdown {
+    height: 800px;
+  }
+</style>
 
 
 

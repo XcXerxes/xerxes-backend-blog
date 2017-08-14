@@ -45,11 +45,11 @@ export default {
       this.$router.push({ name: 'viewArticle', params: { row: $row } })
     },
     editArticle ($row) {
-      this.$router.push({ name: 'editArticle', params: { row: $row } })
+      this.$router.push({ name: 'editArticle', params: { row: $row, id: $row.id } })
     },
     deleteArticle ($row) {
       this.$confirm('确认删除吗?').then(() => {
-        api.deleteCateById($row.id).then(data => {
+        api.deleteArticleById($row.id).then(data => {
           if (data.code === 200) {
             this.$message({
               type: 'success',
@@ -73,9 +73,9 @@ export default {
       })
     },
     fetchList ({ limit, page, sort }) {
-      api.getCateList({ limit, page, sort }).then(data => {
+      api.getArticleList({ limit, page, sort }).then(data => {
         if (data.code === 200) {
-          this.cateList = data.data
+          this.articleList = data.data
           this.total = data.total
         } else if (data.code === -200) {
           this.$message.error(data.message)

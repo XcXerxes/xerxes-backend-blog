@@ -4,7 +4,7 @@
     <el-table-column prop="caption" label="描述" align="center" show-overflow-tooltip></el-table-column>
     <el-table-column label="分类" align="center" show-overflow-tooltip>
       <template scope="scope">
-        <span></span>
+        <span>{{scope.row.category.cate_name}}</span>
       </template>
     </el-table-column>
     <el-table-column prop="visit" label="浏览次数" align="center" show-overflow-tooltip></el-table-column>

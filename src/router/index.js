@@ -12,6 +12,7 @@ const ArticleList = (resolve) => require(['@/pages/article/article-list'], resol
 const ArticleAdd = (resolve) => require(['@/pages/article/article-add'], resolve)
 const ArticleEdit = (resolve) => require(['@/pages/article/article-edit'], resolve)
 const ArticleView = (resolve) => require(['@/pages/article/article-view'], resolve)
+const Setting = (resolve) => require(['@/pages/set/setting'], resolve)
 
 Vue.use(Router)
 
@@ -55,7 +56,7 @@ export default new Router({
           component: ArticleList
         },
         {
-          path: '/article/edit',
+          path: '/article/edit/:id',
           name: 'editArticle',
           component: ArticleEdit
         },
@@ -65,9 +66,14 @@ export default new Router({
           component: ArticleAdd
         },
         {
-          path: '/article/view',
+          path: '/article/view/:id',
           name: 'viewArticle',
           component: ArticleView
+        },
+        {
+          path: '/setting',
+          name: 'setting',
+          component: Setting
         }
       ]
     }
