@@ -23,7 +23,7 @@ export default {
     return {
       cateForm: {
         cate_name: '',
-        cate_sort: null
+        cate_sort: ''
       },
       cateRules: {
         cate_name: [
@@ -39,7 +39,8 @@ export default {
     handleSubmit (formName) {
       this.$refs[formName].validate(validated => {
         if (validated) {
-          this.$emit('article-add', Object.assign(this.cateForm, {
+          debugger
+          this.$emit('cate-add', Object.assign(this.cateForm, {
             cate_sort: +(this.cateForm.cate_sort)
           }))
           console.log('submit success')
