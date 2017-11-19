@@ -29,7 +29,7 @@ export default {
       ],
       page: 1,
       limit: 5,
-      total: 0,
+      total: 1,
       userList: [
         {username: 'xcxerxes', email: 'xcxerxes@aliyun.com', createdAt: 1500865817}
       ]

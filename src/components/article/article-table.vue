@@ -1,21 +1,21 @@
 <template>
   <el-table :data="articleList" highlight-current-row >
-    <el-table-column prop="title" label="标题" align="center" show-overflow-tooltip></el-table-column>
+    <el-table-column prop="title" label="标题" align="center" show-overflow-tooltip width="200"></el-table-column>
     <el-table-column prop="caption" label="描述" align="center" show-overflow-tooltip></el-table-column>
-    <el-table-column label="分类" align="center" show-overflow-tooltip>
+    <el-table-column label="分类" width="100" align="center" show-overflow-tooltip>
       <template scope="scope">
         <span>{{scope.row.category.cate_name}}</span>
       </template>
     </el-table-column>
-    <el-table-column prop="visit" label="浏览次数" align="center" show-overflow-tooltip></el-table-column>
-    <el-table-column prop="like" label="喜欢次数" align="center" show-overflow-tooltip></el-table-column>
-    <el-table-column prop="comment_count" label="评论次数" align="center" show-overflow-tooltip></el-table-column>
+    <el-table-column prop="visit" label="浏览次数" align="center" width="100" show-overflow-tooltip></el-table-column>
+    <el-table-column prop="like" label="喜欢次数" align="center" width="100" show-overflow-tooltip></el-table-column>
+    <el-table-column prop="comment_count" label="评论次数"  width="100" align="center" show-overflow-tooltip></el-table-column>
     <el-table-column label="创建日期" align="center" show-overflow-tooltip>
       <template scope="scope">
         <span>{{formatDate(scope.row.createdAt)}}</span>
       </template>
     </el-table-column>
-    <el-table-column label="操作" align="center">
+    <el-table-column label="操作" align="center" width="200">
       <template scope="scope">
         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

@@ -9,11 +9,11 @@
       </template>
     </el-table-column>
     <el-table-column label="操作" align="center">
-      <template scope="scope">
+      <!-- <template scope="scope">
         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
+      </template> -->
     </el-table-column>
   </el-table>
 </template>
@@ -23,7 +23,7 @@ export default {
   props: ['userList'],
   methods: {
     formatDate (time) {
-      return moment(time)
+      return moment(time).format('YYYY-MM-DD HH:mm:ss')
     },
     handleView (index, row) {
 
