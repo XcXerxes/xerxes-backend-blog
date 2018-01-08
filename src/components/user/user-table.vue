@@ -4,7 +4,7 @@
     <el-table-column prop="username" label="昵称" align="center" show-overflow-tooltip></el-table-column>
     <el-table-column prop="email" label="邮箱" align="center" show-overflow-tooltip></el-table-column>
     <el-table-column label="创建日期" align="center" show-overflow-tooltip>
-      <template scope="scope">
+      <template slot-scope="scope">
         <span>{{formatDate(scope.row.createdAt)}}</span>
       </template>
     </el-table-column>
