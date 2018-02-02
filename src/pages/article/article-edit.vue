@@ -56,7 +56,6 @@ export default {
     },
     fetchArticleItem (id) {
       api.getArticleItem(id).then(data => {
-        debugger
         if (data.code === 200) {
           this.articleInfo = Object.assign({}, data.data)
         } else if (data.code === -500) {

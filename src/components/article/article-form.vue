@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     cancel () {
-      debugger
+      // debugger
     },
     handleSubmit (formName) {
       this.$refs[formName].validate(valid => {
@@ -111,7 +111,6 @@ export default {
     },
     // before upload
     beforeUpload (file) {
-      debugger
       if (file.size > 128000) {
         this.$message.error('上传图片大小不能超过128KB')
         return false
@@ -125,7 +124,6 @@ export default {
   },
   created () {
     /* if (this.articleInfo.id) {
-      debugger
       this.articleForm = Object.assign({}, this.articleInfo, {
         thumb: `${config.imgUrl}${this.articleInfo.thumb}`
       })

@@ -39,7 +39,6 @@ export default {
     handleSubmit (formName) {
       this.$refs[formName].validate(validated => {
         if (validated) {
-          debugger
           this.$emit('cate-add', Object.assign(this.cateForm, {
             cate_sort: +(this.cateForm.cate_sort)
           }))
