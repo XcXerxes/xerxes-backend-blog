@@ -12,7 +12,6 @@
 <script>
   import loginForm from '@/components/Login/login-form'
   import {setCookie} from '@/utils'
-  import md5 from 'blueimp-md5'
   import api from '@/api'
 
   export default {
@@ -20,7 +19,7 @@
       loginSubmit (loginForm) {
         console.log(loginForm)
         api.login(Object.assign(loginForm, {
-          password: md5(loginForm.password)
+          password: loginForm.password
         })).then(data => {
           console.log(data)
           if (data.code === 200) {

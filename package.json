@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "animate.css": "^3.5.2",
-    "blueimp-md5": "^2.7.0",
     "element-ui": "^1.4.0",
     "mavon-editor": "^2.1.12",
     "moment": "^2.18.1",
